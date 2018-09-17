@@ -1,0 +1,55 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.0.0-alpha1"
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0-alpha1"
+
+
+    def rxJava2Version = '2.1.9'
+    def rxAndroidVersion = '2.0.2'
+    def rxBindingVersion = '2.0.0'
+    api "io.reactivex.rxjava2:rxjava:$rxJava2Version"
+    api "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    api "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
+
+    def daggerLibraryVersion = '2.11'
+    implementation "com.google.dagger:dagger:$daggerLibraryVersion"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerLibraryVersion"
+    implementation "com.google.dagger:dagger-android:2.15"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerLibraryVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerLibraryVersion"
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha3'
+}
